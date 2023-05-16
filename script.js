@@ -2,10 +2,17 @@
 //Array of either E (empty), O, or X. Later, the index # of the array will be compared to the index # of the board tile.
 const boardController = (() => {
     const boardArray = ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'];
+    let moveTurn = 1;
 
     //Method that updates boardArray depending on the move passed in  
     const updateBoardArray = (tileIndex) => {
-        console.log(tileIndex);
+        if (moveTurn % 2 == 0) {
+            boardArray[tileIndex] = 'O';
+        }
+        else {
+            boardArray[tileIndex] = 'X';
+        }
+        moveTurn++;
     };
 
     return { boardArray, updateBoardArray };
@@ -19,18 +26,25 @@ const boardDisplayController = (() => {
     for (let i = 0; i < boardTiles.length; i++) {
         boardTiles[i].addEventListener('click', () => {
             boardController.updateBoardArray(i);
+            updateTile(i);
         });
     }
 
     //if E, then leave tile empty; if O, put O in tile; if X, put X in tile.
+    const updateTile = (boardIndex) => {
+        
+    };
 
 })();
 
-//player functions. Marker = whether theyre X or O.
-const playerFactory = (name, marker) => {
-    return { name, marker };
+//player functions.
+const playerFactory = (name, score) => {
+    return { name, score };
 }
 
 
-//So a player chooses whether they're X or O. They click on a tile, and which player made the move is passed over to the controller,
+//Player 1 is X, player 2 is O. They click on a tile, and which player made the move is passed over to the controller,
 //which updates the board array and then calls the displayController to update the game board.
+
+//First click = player 1. So on odd moveturns, update to X ??
+//Second click = player 2. So on even moveturns, update to O.
