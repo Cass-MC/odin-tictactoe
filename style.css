@@ -1,0 +1,16 @@
+#gameBoardWrapper {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 80vh;
+    height: 80vh;
+    background-color: red;
+    margin: auto;
+}
+
+.gameBoardTile {
+    background-color: blue;
+    margin: auto;
+    width: 95%;
+    height: 95%;
+}
