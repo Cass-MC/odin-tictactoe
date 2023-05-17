@@ -4,15 +4,17 @@ const boardController = (() => {
     const boardArray = ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'];
     let moveTurn = 1;
 
-    //Method that updates boardArray depending on the move passed in  
     const updateBoardArray = (tileIndex) => {
-        if (moveTurn % 2 == 0) {
-            boardArray[tileIndex] = 'O';
+        //Make it only overwrite 'E' values.
+        if (boardArray[tileIndex] == 'E') {
+            if (moveTurn % 2 == 0) {
+                boardArray[tileIndex] = 'O';
+            }
+            else {
+                boardArray[tileIndex] = 'X';
+            }
+            moveTurn++;
         }
-        else {
-            boardArray[tileIndex] = 'X';
-        }
-        moveTurn++;
     };
 
     return { boardArray, updateBoardArray };
@@ -30,7 +32,6 @@ const boardDisplayController = (() => {
         });
     }
 
-    //if E, then leave tile empty; if O, put O in tile; if X, put X in tile.
     const updateTile = (boardIndex) => {
         //retrieve tile value from boardcontroller and compare
         if (boardController.boardArray[boardIndex] == 'X') {
