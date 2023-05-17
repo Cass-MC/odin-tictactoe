@@ -32,7 +32,13 @@ const boardDisplayController = (() => {
 
     //if E, then leave tile empty; if O, put O in tile; if X, put X in tile.
     const updateTile = (boardIndex) => {
-        
+        //retrieve tile value from boardcontroller and compare
+        if (boardController.boardArray[boardIndex] == 'X') {
+            boardTiles[boardIndex].textContent = 'X';
+        }
+        if (boardController.boardArray[boardIndex] == 'O') {
+            boardTiles[boardIndex].textContent = 'O';
+        }
     };
 
 })();
