@@ -17,7 +17,54 @@ const boardController = (() => {
         }
     };
 
-    return { boardArray, updateBoardArray };
+    const checkForRow = () => {
+        //Check first row
+        if (boardArray[0] != 'E' && boardArray[0] == boardArray[1] && boardArray[0] == boardArray[2]) {
+            console.log('First row');
+        }
+        //Check second row
+        if (boardArray[3] != 'E' && boardArray[3] == boardArray[4] && boardArray[3] == boardArray[5]) {
+            console.log('Second row');
+        }
+        //Check third row
+        if (boardArray[6] != 'E' && boardArray[6] == boardArray[7] && boardArray[6] == boardArray[8]) {
+            console.log('Third row');
+        }
+    };
+
+    const checkForColumn = () => {
+        //Check first column
+        if (boardArray[0] != 'E' && boardArray[0] == boardArray[3] && boardArray[0] == boardArray[6]) {
+            console.log('First column');
+        }
+        //Check second column
+        if (boardArray[1] != 'E' && boardArray[1] == boardArray[4] && boardArray[1] == boardArray[7]) {
+            console.log('Second column');
+        }
+        //Check third column
+        if (boardArray[2] != 'E' && boardArray[2] == boardArray[5] && boardArray[2] == boardArray[8]) {
+            console.log('Third column')
+        }
+    }
+
+    const checkForDiagonal = () => {
+        //Check L-R
+        if (boardArray[0] != 'E' && boardArray[0] == boardArray[4] && boardArray[0] == boardArray[8]) {
+            console.log('LR diagonal');
+        }
+        //Check R-L
+        if (boardArray[2] != 'E' && boardArray[2] == boardArray[4] && boardArray[2] == boardArray[6]) {
+            console.log('RL diagonal');
+        }
+    }
+
+    const checkWin = () => {
+        checkForRow();
+        checkForColumn();
+        checkForDiagonal();
+    }
+
+    return { boardArray, updateBoardArray, checkWin};
 })();
 
 //board display module
@@ -29,6 +76,7 @@ const boardDisplayController = (() => {
         boardTiles[i].addEventListener('click', () => {
             boardController.updateBoardArray(i);
             updateTile(i);
+            boardController.checkWin();
         });
     }
 
