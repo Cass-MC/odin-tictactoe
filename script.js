@@ -98,8 +98,4 @@ const playerFactory = (name, score) => {
 }
 
 
-//Player 1 is X, player 2 is O. They click on a tile, and which player made the move is passed over to the controller,
-//which updates the board array and then calls the displayController to update the game board.
-
-//First click = player 1. So on odd moveturns, update to X ??
-//Second click = player 2. So on even moveturns, update to O.
+//Player 1 is X, player 2 is O.

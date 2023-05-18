@@ -1,18 +1,32 @@
+#bodyWrapper {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+}
+
 #gameBoardWrapper {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
     width: 80vh;
     height: 80vh;
-    background-color: red;
+    background-color: black;
     margin: auto;
 }
 
 .gameBoardTile {
-    background-color: blue;
+    background-color: white;
     margin: auto;
     width: 95%;
     height: 95%;
-    color: white;
+    color: black;
     font-size: 80px;
+}
+
+.players {
+    background-color: beige;
+}
+
+.playerInfo {
+    background-color: pink;
 }
