@@ -75,7 +75,11 @@ const boardController = (() => {
         checkForDiagonal();
     }
 
-    return { boardArray, updateBoardArray, checkWin};
+    const resetBoardArray = () => {
+        boardArray.forEach((el,i,arr) => { arr[i] = 'E'});
+    }
+
+    return { boardArray, updateBoardArray, checkWin, resetBoardArray };
 })();
 
 //board display module
@@ -100,6 +104,16 @@ const boardDisplayController = (() => {
             boardTiles[boardIndex].textContent = 'O';
         }
     };
+
+    const restartButton = document.getElementById("restartButton");
+    restartButton.addEventListener('click', () => { restartGame() });
+
+    const restartGame = () => {
+        for (let tile of boardTiles) {
+            tile.textContent = '';
+        }
+        boardController.resetBoardArray();
+    }
 
 })();
 
