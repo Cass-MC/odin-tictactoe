@@ -141,6 +141,10 @@ const playerController = (() => {
             playerOne.score += 1;
             playerInfoDivs[0].lastChild.textContent = `Wins: ${playerOne.score}`;
         }
+        else {
+            playerTwo.score += 1;
+            playerInfoDivs[1].lastChild.textContent = `Wins: ${playerTwo.score}`;
+        }
     }
 
     return { playerOne , playerTwo , updateScore};
