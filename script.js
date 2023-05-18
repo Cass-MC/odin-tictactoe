@@ -17,44 +17,55 @@ const boardController = (() => {
         }
     };
 
+    const whichPlayerWins = (marker) => {
+        if (marker == 'X') {
+            window.alert(`${playerController.playerOne.name} wins!`);
+            playerController.updateScore(playerController.playerOne);
+        }
+        else {
+            window.alert(`${playerController.playerTwo.name} wins!`);
+            playerController.updateScore(playerController.playerTwo);
+        }
+    }
+
     const checkForRow = () => {
         //Check first row
         if (boardArray[0] != 'E' && boardArray[0] == boardArray[1] && boardArray[0] == boardArray[2]) {
-            console.log('First row');
+            whichPlayerWins(boardArray[0]);
         }
         //Check second row
         if (boardArray[3] != 'E' && boardArray[3] == boardArray[4] && boardArray[3] == boardArray[5]) {
-            console.log('Second row');
+            whichPlayerWins(boardArray[3]);
         }
         //Check third row
         if (boardArray[6] != 'E' && boardArray[6] == boardArray[7] && boardArray[6] == boardArray[8]) {
-            console.log('Third row');
+            whichPlayerWins(boardArray[6]);
         }
     };
 
     const checkForColumn = () => {
         //Check first column
         if (boardArray[0] != 'E' && boardArray[0] == boardArray[3] && boardArray[0] == boardArray[6]) {
-            console.log('First column');
+            whichPlayerWins(boardArray[0]);
         }
         //Check second column
         if (boardArray[1] != 'E' && boardArray[1] == boardArray[4] && boardArray[1] == boardArray[7]) {
-            console.log('Second column');
+            whichPlayerWins(boardArray[1]);
         }
         //Check third column
         if (boardArray[2] != 'E' && boardArray[2] == boardArray[5] && boardArray[2] == boardArray[8]) {
-            console.log('Third column')
+            whichPlayerWins(boardArray[3]);
         }
     }
 
     const checkForDiagonal = () => {
         //Check L-R
         if (boardArray[0] != 'E' && boardArray[0] == boardArray[4] && boardArray[0] == boardArray[8]) {
-            console.log('LR diagonal');
+            whichPlayerWins(boardArray[0]);
         }
         //Check R-L
         if (boardArray[2] != 'E' && boardArray[2] == boardArray[4] && boardArray[2] == boardArray[6]) {
-            console.log('RL diagonal');
+            whichPlayerWins(boardArray[2]);
         }
     }
 
@@ -93,9 +104,30 @@ const boardDisplayController = (() => {
 })();
 
 //player functions.
-const playerFactory = (name, score) => {
+const playerFactory = (name, score = 0) => {
     return { name, score };
 }
 
+const playerController = (() => {
+    const playerOneName = window.prompt("Enter player one's name:","Player One");
+    const playerTwoName = window.prompt("Enter player two's name:","Player Two");
 
-//Player 1 is X, player 2 is O.
+    const playerOne = playerFactory(playerOneName);
+    const playerTwo = playerFactory(playerTwoName);
+
+    const playerInfoDivs = document.getElementsByClassName("playerInfo");
+
+    playerInfoDivs[0].firstChild.textContent = playerOne.name;
+    playerInfoDivs[0].lastChild.textContent = `Wins: ${playerOne.score}`;
+    playerInfoDivs[1].firstChild.textContent = playerTwo.name;
+    playerInfoDivs[1].lastChild.textContent = `Wins: ${playerTwo.score}`;
+
+    const updateScore = (winningPlayer) => {
+        if (winningPlayer.name == playerOne.name) {
+            playerOne.score += 1;
+            playerInfoDivs[0].lastChild.textContent = `Wins: ${playerOne.score}`;
+        }
+    }
+
+    return { playerOne , playerTwo , updateScore};
+})();
