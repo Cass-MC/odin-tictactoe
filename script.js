@@ -31,14 +31,17 @@ const boardController = (() => {
     const checkForRow = () => {
         //Check first row
         if (boardArray[0] != 'E' && boardArray[0] == boardArray[1] && boardArray[0] == boardArray[2]) {
+            console.log(boardArray[0]);
             whichPlayerWins(boardArray[0]);
         }
         //Check second row
         if (boardArray[3] != 'E' && boardArray[3] == boardArray[4] && boardArray[3] == boardArray[5]) {
+            console.log(boardArray[3]);
             whichPlayerWins(boardArray[3]);
         }
         //Check third row
         if (boardArray[6] != 'E' && boardArray[6] == boardArray[7] && boardArray[6] == boardArray[8]) {
+            console.log(boardArray[6]);
             whichPlayerWins(boardArray[6]);
         }
     };
@@ -46,25 +49,30 @@ const boardController = (() => {
     const checkForColumn = () => {
         //Check first column
         if (boardArray[0] != 'E' && boardArray[0] == boardArray[3] && boardArray[0] == boardArray[6]) {
+            console.log(boardArray[0]);
             whichPlayerWins(boardArray[0]);
         }
         //Check second column
         if (boardArray[1] != 'E' && boardArray[1] == boardArray[4] && boardArray[1] == boardArray[7]) {
+            console.log(boardArray[1]);
             whichPlayerWins(boardArray[1]);
         }
         //Check third column
         if (boardArray[2] != 'E' && boardArray[2] == boardArray[5] && boardArray[2] == boardArray[8]) {
-            whichPlayerWins(boardArray[3]);
+            console.log(boardArray[2]);
+            whichPlayerWins(boardArray[2]);
         }
     }
 
     const checkForDiagonal = () => {
         //Check L-R
         if (boardArray[0] != 'E' && boardArray[0] == boardArray[4] && boardArray[0] == boardArray[8]) {
+            console.log(boardArray[0]);
             whichPlayerWins(boardArray[0]);
         }
         //Check R-L
         if (boardArray[2] != 'E' && boardArray[2] == boardArray[4] && boardArray[2] == boardArray[6]) {
+            console.log(boardArray[2]);
             whichPlayerWins(boardArray[2]);
         }
     }
@@ -77,6 +85,7 @@ const boardController = (() => {
 
     const resetBoardArray = () => {
         boardArray.forEach((el,i,arr) => { arr[i] = 'E'});
+        moveTurn = 1;
     }
 
     return { boardArray, updateBoardArray, checkWin, resetBoardArray };
